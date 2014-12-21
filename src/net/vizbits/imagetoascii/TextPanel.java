@@ -75,6 +75,7 @@ public class TextPanel extends JPanel {
 
       image = bi;
       repaint();
+      file.mkdirs();
       ImageIO.write(bi, "PNG", file);
 
     } catch (Exception ie) {
