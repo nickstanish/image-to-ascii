@@ -4,7 +4,9 @@
 bin/
 tmp/
 media/output/
-
+media/*
+.DS_Store
+.*
 
 *.tmp
 *.bak

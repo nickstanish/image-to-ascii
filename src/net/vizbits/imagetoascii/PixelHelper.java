@@ -33,7 +33,11 @@ public class PixelHelper {
             new Block(image.getSubimage(j * blockSize, i * blockSize, blockSize, blockSize));
         char selection;
         // expected value is 0-255, should give range of 0-7, with higher being brighter
-        selection = indexToChar8(block.getGrayIndex());
+        if (block.getAlpha() < 150) {
+          selection = ' ';
+        } else {
+          selection = indexToChar8(block.getGrayIndex());
+        }
         // selection = indexToCharSimple(block.getGrayIndex());
         builder.append(selection);
         // System.out.print(selection);

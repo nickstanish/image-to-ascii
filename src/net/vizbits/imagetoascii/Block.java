@@ -20,6 +20,7 @@ public class Block {
     int reds = 0;
     int greens = 0;
     int blues = 0;
+    int alphas = 0;
 
     for (int i = 0; i < width; i++) {
       for (int j = 0; j < height; j++) {
@@ -27,18 +28,25 @@ public class Block {
         int red = (clr & 0x00ff0000) >> 16;
         int green = (clr & 0x0000ff00) >> 8;
         int blue = clr & 0x000000ff;
+        int alpha = (clr >> 24) & 0xff;
 
         reds += red;
         greens += green;
         blues += blue;
+        alphas += alpha;
       }
     }
     int pixelCount = height * width;
     int red = reds / pixelCount;
     int green = greens / pixelCount;
     int blue = blues / pixelCount;
-    averageColor = new Color(red, green, blue);
+    int alpha = alphas / pixelCount;
+    averageColor = new Color(red, green, blue, alpha);
     grayIndex = (int) ((red + blue + green) / 3.0);
+  }
+
+  public int getAlpha() {
+    return averageColor.getAlpha();
   }
 
   public Color getAverageColor() {
