@@ -42,6 +42,7 @@ public class AsciiService {
     ArrayList<String> texts = new ArrayList<String>();
     int rows = height / blockSize;
     int columns = width / blockSize;
+    System.out.println(String.format("%d x %d,  rows: %d, cols: %d", width, height, rows, columns));
 
     Thread processing = new Thread() {
       @Override
@@ -65,6 +66,7 @@ public class AsciiService {
               }
               // selection = indexToCharSimple(block.getGrayIndex());
               builder.append(selection);
+              builder.append(" ");
               // System.out.print(selection);
             }
 
@@ -75,7 +77,7 @@ public class AsciiService {
           FontMetrics metrics = getFontMetrics(font);
           int verticalHeight = metrics.getHeight();
           int height = rows * verticalHeight + 2 * PADDING;
-          int width = columns * metrics.stringWidth(" ") + 2 * PADDING;
+          int width = columns * 2 * metrics.stringWidth(" ") + 2 * PADDING;
           image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
           Graphics2D g2D = image.createGraphics();
           g2D.setColor(Color.white);
